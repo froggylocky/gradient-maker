@@ -53,49 +53,30 @@ export default function App() {
     setColors(newColors);
   };
 
-  const bgStart = chroma.valid(colors[0]) ? chroma(colors[0]).alpha(0.05).css() : '#f9fafb';
-  const bgEnd = chroma.valid(colors[colors.length - 1]) ? chroma(colors[colors.length - 1]).alpha(0.05).css() : '#f9fafb';
+  const bgStart = chroma.valid(colors[0]) ? chroma(colors[0]).alpha(0.15).css() : '#f9fafb';
+  const bgEnd = chroma.valid(colors[colors.length - 1]) ? chroma(colors[colors.length - 1]).alpha(0.15).css() : '#f9fafb';
   const accentColor = chroma.valid(colors[0]) ? chroma(colors[0]).css() : '#000';
 
   return (
     <div 
-      className="min-h-screen flex flex-col items-center py-12 px-4 transition-all duration-700 ease-in-out"
+      className="min-h-screen flex flex-col items-center py-12 px-4 transition-all duration-1000 ease-in-out"
       style={{ 
-        background: `linear-gradient(135deg, ${bgStart}, ${bgEnd})`,
+        background: `linear-gradient(160deg, ${bgStart} 0%, ${bgEnd} 100%)`,
+        backgroundColor: '#f9fafb'
       }}
     >
       <div className="w-full max-w-4xl">
-        <div className="flex flex-col items-center mb-12">
-          {/* Logo with Gradient - Using a more robust mask implementation */}
-          <div className="relative w-full max-w-[500px] h-32 mb-6 group">
-            <div 
-              className="absolute inset-0 transition-opacity duration-500"
-              style={{ 
-                background: cssGradient,
-                WebkitMaskImage: `url(https://u.cubeupload.com/froglock/logoGradientmaker.png)`,
-                maskImage: `url(https://u.cubeupload.com/froglock/logoGradientmaker.png)`,
-                WebkitMaskSize: 'contain',
-                maskSize: 'contain',
-                WebkitMaskRepeat: 'no-repeat',
-                WebkitMaskPosition: 'center',
-              }}
-            />
-            {/* Fallback if mask fails or image is loading */}
+        <div className="flex flex-col items-center mb-16">
+          {/* Logo - Standard Image Tag without masking as requested */}
+          <div className="w-full max-w-[1000px] h-64 mb-4 flex justify-center items-center">
             <img 
               src="https://u.cubeupload.com/froglock/logoGradientmaker.png" 
               alt="Gradient Maker Logo" 
-              className="opacity-0 pointer-events-none w-full h-full object-contain"
-              onLoad={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.parentElement?.firstElementChild?.classList.remove('opacity-0');
-              }}
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                console.error("Logo failed to load");
-              }}
+              className="max-w-full max-h-full object-contain"
             />
           </div>
-          <p className="text-gray-400 font-medium tracking-tight text-center max-w-md">
+          
+          <p className="text-gray-400 font-medium tracking-tight text-center max-w-md mt-4">
             Professional gradient generation and color stepping tool.
           </p>
         </div>
@@ -104,8 +85,8 @@ export default function App() {
           {/* Controls Section */}
           <div className="space-y-8">
             <div 
-              className="bg-white/80 backdrop-blur-sm p-8 rounded-[2.5rem] shadow-2xl shadow-gray-200/20 border transition-all duration-500"
-              style={{ borderColor: chroma(accentColor).alpha(0.1).css() }}
+              className="bg-white/90 backdrop-blur-md p-8 rounded-[2.5rem] shadow-2xl shadow-gray-200/30 border transition-all duration-500"
+              style={{ borderColor: chroma(accentColor).alpha(0.15).css() }}
             >
               <h2 
                 className="text-[10px] font-black uppercase tracking-[0.3em] mb-8 gradient-text"
